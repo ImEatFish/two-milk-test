@@ -17,7 +17,7 @@
 
         layer_0 {
             bindings = <
-&kp UP_ARROW  &kp DOWN
+&kp UP_ARROW  &kp DOWN_ARROW
             >;
         };
     };
