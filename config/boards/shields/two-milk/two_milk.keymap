@@ -16,7 +16,7 @@
         hold_bt: hold_bt {
             compatible = "zmk,behavior-hold-tap";
             label = "HOLD_BT";
-            bindings = <&bt>, <&kp>;
+            bindings = <&bt_next>, <&kp>;
 
             #binding-cells = <2>;
             tapping-term-ms = <500>;
@@ -33,6 +33,15 @@
             tapping-term-ms = <200>;
             quick-tap-ms = <200>;
             flavor = "hold-preferred";
+        };
+    };
+
+    macros {
+        bt_next: bt_next {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&bt BT_NXT>;
+            label = "BT_NEXT";
         };
     };
 
