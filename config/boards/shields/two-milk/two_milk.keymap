@@ -62,7 +62,7 @@
 
         layer_0 {
             bindings = <
-&hold_bt BT_NXT 0  &hold_soft_off 0 0
+&hold_bt 0 0  &hold_soft_off 0 0
             >;
         };
     };
