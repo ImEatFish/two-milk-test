@@ -7,8 +7,44 @@
         compatible = "zmk,combos";
 
         press_both_bt {
-            bindings = <&bt BT_NXT>;
+            bindings = <&kp C_PLAY_PAUSE>;
             key-positions = <0 1>;
+        };
+    };
+
+    behaviors {
+        key_one: key_one {
+            compatible = "zmk,behavior-tap-dance";
+            label = "KEY_ONE";
+            #binding-cells = <0>;
+            bindings = <&kp UP_ARROW>, <&kp LEFT>;
+        };
+
+        key_two: key_two {
+            compatible = "zmk,behavior-tap-dance";
+            label = "KEY_TWO";
+            #binding-cells = <0>;
+            bindings = <&kp DOWN>, <&kp RIGHT>;
+        };
+
+        hold_bt: hold_bt {
+            compatible = "zmk,behavior-hold-tap";
+            label = "HOLD_BT";
+            bindings = <&bt>, <&key_one>;
+
+            #binding-cells = <2>;
+            tapping-term-ms = <200>;
+            flavor = "tap-preferred";
+        };
+
+        hold_soft_off: hold_soft_off {
+            compatible = "zmk,behavior-hold-tap";
+            label = "HOLD_SOFT_OFF";
+            bindings = <&soft_off>, <&key_two>;
+
+            #binding-cells = <2>;
+            tapping-term-ms = <500>;
+            flavor = "tap-preferred";
         };
     };
 
@@ -17,7 +53,7 @@
 
         layer_0 {
             bindings = <
-&kp UP_ARROW  &kp DOWN_ARROW
+&hold_bt BT_NXT 0  &hold_soft_off 0 0
             >;
         };
     };
