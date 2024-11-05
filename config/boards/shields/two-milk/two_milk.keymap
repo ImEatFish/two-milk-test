@@ -50,7 +50,7 @@
 
         layer_0 {
             bindings = <
-&hold_bt BT_NXT UP_ARROW  &hold_right RIGHT DOWN
+&hold_bt 0 UP_ARROW  &hold_right RIGHT DOWN
             >;
         };
     };
