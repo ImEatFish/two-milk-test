@@ -13,49 +13,26 @@
     };
 
     behaviors {
-        key_one: key_one {
-            compatible = "zmk,behavior-tap-dance";
-            label = "KEY_ONE";
-            #binding-cells = <0>;
-            bindings = <&kp UP_ARROW>, <&kp LEFT>;
-        };
-
-        key_two: key_two {
-            compatible = "zmk,behavior-tap-dance";
-            label = "KEY_TWO";
-            #binding-cells = <0>;
-            bindings = <&kp DOWN>, <&kp RIGHT>;
-        };
-
         hold_bt: hold_bt {
             compatible = "zmk,behavior-hold-tap";
             label = "HOLD_BT";
-            bindings = <&bt_macro>, <&key_one>;
+            bindings = <&bt>, <&kp>;
 
             #binding-cells = <2>;
-            tapping-term-ms = <200>;
-            quick-tap-ms = <200>;
-            flavor = "balanced";
+            tapping-term-ms = <500>;
+            flavor = "hold-preferred";
+            quick-tap-ms = <500>;
         };
 
-        hold_soft_off: hold_soft_off {
+        hold_right: hold_right {
             compatible = "zmk,behavior-hold-tap";
-            label = "HOLD_SOFT_OFF";
-            bindings = <&soft_off>, <&key_two>;
+            label = "HOLD_RIGHT";
+            bindings = <&kp>, <&kp>;
 
             #binding-cells = <2>;
             tapping-term-ms = <200>;
             quick-tap-ms = <200>;
-            flavor = "balanced";
-        };
-    };
-
-    macros {
-        bt_macro: bt_macro {
-            compatible = "zmk,behavior-macro";
-            #binding-cells = <0>;
-            bindings = <&bt BT_NXT>;
-            label = "BT_MACRO";
+            flavor = "hold-preferred";
         };
     };
 
@@ -64,7 +41,7 @@
 
         layer_0 {
             bindings = <
-&hold_bt 0 0  &hold_soft_off 0 0
+&hold_bt BT_NXT UP_ARROW  &hold_right RIGHT DOWN
             >;
         };
     };
