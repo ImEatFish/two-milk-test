@@ -1,18 +1,52 @@
+/*
+ * 完整的 .overlay 文件
+ * 描述了一个带有两个直连按键和电池监控的 nice!nano v2 键盘
+ */
+
 / {
+    /*
+     * "chosen" 节点是ZMK的核心配置
+     * 它告诉固件要使用哪个按键扫描驱动 (kscan) 和哪个电池驱动 (battery)
+     */
     chosen {
         zmk,kscan = &default_kscan;
+        zmk,battery = &vbatt;
     };
 
+    /*
+     * 按键扫描 (kscan) 驱动定义
+     * 这里我们使用直连引脚模式
+     */
     default_kscan: kscan {
         compatible = "zmk,kscan-gpio-direct";
         label = "default_kscan";
 
-        /* * 【核心修改】
-         * 将原来的 &pro_micro 引脚别名
-         * 替换为精确的 &gpio 引脚地址
-         */
-        input-gpios =
-            <&gpio0 2 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>,  // P0.02，这是逻辑按键0
-            <&gpio1 15 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>; // P1.15，这是逻辑按键1
+        // 定义你的两个按键所连接的GPIO引脚
+        // 顺序决定了它们在 .keymap 文件中的逻辑位置 (0 和 1)
+        input-gpios
+            = <&gpio0 2 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>  // P0.02, 逻辑按键 0
+            , <&gpio1 15 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)> // P1.15, 逻辑按键 1
+            ;
+    };
+
+    /*
+     * 电池电压 (vbatt) 驱动定义
+     * 这里我们使用 nice!nano v2 内置的分压电路
+     */
+    vbatt: vbatt {
+        compatible = "zmk,battery-voltage-divider";
+        label = "BATTERY";
+
+        // io-channels: 指定连接到分压电路的ADC引脚
+        // nice!nano v2 使用 P0.31, 对应ADC的第7通道
+        io-channels = <&adc 7>;
+
+        // output-ohms: 分压电路中连接到地的电阻值 (R2)
+        // R2=1.5Mohm
+        output-ohms = <1500000>;
+
+        // full-ohms: 分压电路的总电阻值 (R1 + R2)
+        // nice!nano v2 使用 1MΩ + 1500kΩ = 2.5MΩ
+        full-ohms = <(1000000 + 1500000)>;
     };
 };
