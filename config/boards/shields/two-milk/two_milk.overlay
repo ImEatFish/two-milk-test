@@ -7,8 +7,12 @@
         compatible = "zmk,kscan-gpio-direct";
         label = "default_kscan";
 
+        /* * 【核心修改】
+         * 将原来的 &pro_micro 引脚别名
+         * 替换为精确的 &gpio 引脚地址
+         */
         input-gpios =
-            <&pro_micro 4 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>,
-            <&pro_micro 3 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>;
+            <&gpio0 2 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>,  // P0.02，这是逻辑按键0
+            <&gpio1 15 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>; // P1.15，这是逻辑按键1
     };
 };
