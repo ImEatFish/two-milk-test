@@ -43,7 +43,7 @@
 
         // output-ohms: 分压电路中连接到地的电阻值 (R2)
         // R2=1.5Mohm
-        output-ohms = <1500000>;
+        output-ohms = <1440000>;
 
         // full-ohms: 分压电路的总电阻值 (R1 + R2)
         // nice!nano v2 使用 1MΩ + 1500kΩ = 2.5MΩ
