@@ -1,33 +1,31 @@
+# 这个文件定义了当 "two_percent_milk" 被编译时，各项配置的默认值
 if SHIELD_TWO_PERCENT_MILK
 
-config ZMK_KEYBOARD_NAME
-    default "HudadaPageTurner"
+  # --- 名称和身份标识 ---
+  config ZMK_KEYBOARD_NAME
+      default "HudadaPageTurner"
 
-config USB_DEVICE_MANUFACTURER
-    default "EatFish Technology"
+  config USB_DEVICE_MANUFACTURER
+      default "EatFish Technology"
 
-config BT_DIS_MANUF
-    default "EatFish Technology"
+  config BT_DIS_MANUF
+      default "EatFish Technology"
 
-CONFIG_ZMK_USB=n
+  # --- 蓝牙连接参数 ---
+  # 设置一组更慢、更省电的参数，适合翻页器使用
+  config BT_CTLR_PHY_2M
+      default n
 
-config BT_CTLR_PHY_2M
-    default n
+  config BT_PERIPHERAL_PREF_MIN_INT
+      default 8 # (10ms)
 
-config BT_PERIPHERAL_PREF_MIN_INT
-    default 8
+  config BT_PERIPHERAL_PREF_MAX_INT
+      default 24 # (30ms)
 
-config BT_PERIPHERAL_PREF_MAX_INT
-    default 24
+  config BT_PERIPHERAL_PREF_LATENCY
+      default 40
 
-config BT_PERIPHERAL_PREF_LATENCY
-    default 40
-
-config BT_PERIPHERAL_PREF_TIMEOUT
-    default 480
-
-CONFIG_ZMK_SLEEP=y
-CONFIG_ZMK_IDLE_SLEEP_TIMEOUT=600000
-CONFIG_ZMK_EXT_POWER=y
+  config BT_PERIPHERAL_PREF_TIMEOUT
+      default 480 # (4.8 秒)
 
 endif
