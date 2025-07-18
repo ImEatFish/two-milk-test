@@ -1,5 +1,5 @@
 # 这个文件定义了当 "two_percent_milk" 被编译时，各项配置的默认值
-if SHIELD_TWO_PERCENT_MILK
+if SHIELD_TWO_MILK
 
   # --- 名称和身份标识 ---
   
