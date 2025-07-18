@@ -1,33 +1,27 @@
 /*
- * nice!nano v2 键盘盾牌 overlay (采用官方 VDDH 电池读取)
+ * two_milk 盾牌的 .overlay 文件
+ * 描述了两个直连按键和P0.13的外部电源控制
  */
 
 / {
-    /*
-     * 1. 定义按键扫描驱动
-     * 这里保留了我们之前为你的两个直连按键做的配置。
-     */
+    // 1. 定义按键扫描和外部电源的驱动
     chosen {
         zmk,kscan = &default_kscan;
     };
 
+    // 2. 按键扫描 (kscan) 驱动定义
     default_kscan: kscan {
         compatible = "zmk,kscan-gpio-direct";
         label = "default_kscan";
-
         input-gpios
-            = <&gpio0 2 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>  // P0.02, 逻辑按键 0
-            , <&gpio1 15 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)> // P1.15, 逻辑按键 1
+            = <&gpio0 2 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>
+            , <&gpio1 15 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>
             ;
+    };
+
+    // 3. 外部电源控制 (ext_power) 节点定义
     ext_power {
         compatible = "zmk,ext-power-generic";
         control-gpios = <&gpio0 13 GPIO_ACTIVE_HIGH>;
     };
-
-    /*
-     * 2. 电池驱动定义
-     * 【注意】我们把之前那段 vbatt 的定义【完全删除】了。
-     * 因为ZMK在编译时会自动包含 nice_nano_v2.dts 文件中
-     * 那个使用 nrf-vddh 的 vbatt 定义，我们不再需要自己定义了。
-     */
 };
