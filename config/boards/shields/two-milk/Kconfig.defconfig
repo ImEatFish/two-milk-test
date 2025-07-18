@@ -1,6 +1,33 @@
 if SHIELD_TWO_PERCENT_MILK
 
 config ZMK_KEYBOARD_NAME
-    default "2% Milk"
+    default "HudadaPageTurner"
+
+config USB_DEVICE_MANUFACTURER
+    default "EatFish Technology"
+
+config BT_DIS_MANUF
+    default "EatFish Technology"
+
+CONFIG_ZMK_USB=n
+
+config BT_CTLR_PHY_2M
+    default n
+
+config BT_PERIPHERAL_PREF_MIN_INT
+    default 8
+
+config BT_PERIPHERAL_PREF_MAX_INT
+    default 24
+
+config BT_PERIPHERAL_PREF_LATENCY
+    default 40
+
+config BT_PERIPHERAL_PREF_TIMEOUT
+    default 480
+
+CONFIG_ZMK_SLEEP=y
+CONFIG_ZMK_IDLE_SLEEP_TIMEOUT=600000
+CONFIG_ZMK_EXT_POWER=y
 
 endif
