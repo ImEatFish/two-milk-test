@@ -19,6 +19,9 @@
             = <&gpio0 2 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>  // P0.02, 逻辑按键 0
             , <&gpio1 15 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)> // P1.15, 逻辑按键 1
             ;
+    ext_power {
+        compatible = "zmk,ext-power-generic";
+        control-gpios = <&gpio0 13 GPIO_ACTIVE_HIGH>;
     };
 
     /*
