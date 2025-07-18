@@ -1,15 +1,13 @@
 /*
  * two_milk 盾牌的 .overlay 文件
- * 描述了两个直连按键和P0.13的外部电源控制
+ * 只定义盾牌特有的硬件（按键），外部电源由主板的dts文件负责。
  */
 
 / {
-    // 1. 定义按键扫描和外部电源的驱动
     chosen {
         zmk,kscan = &default_kscan;
     };
 
-    // 2. 按键扫描 (kscan) 驱动定义
     default_kscan: kscan {
         compatible = "zmk,kscan-gpio-direct";
         label = "default_kscan";
@@ -19,9 +17,5 @@
             ;
     };
 
-    // 3. 外部电源控制 (ext_power) 节点定义
-    ext_power {
-        compatible = "zmk,ext-power-generic";
-        control-gpios = <&gpio0 13 GPIO_ACTIVE_HIGH>;
-    };
+    // 【重要】确保这里没有 ext_power 相关的任何定义！
 };
