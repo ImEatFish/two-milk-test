@@ -1,0 +1,13 @@
+{
+  "ExpandedNodes": [
+    "",
+    "\\.github",
+    "\\.github\\workflows",
+    "\\config",
+    "\\config\\boards",
+    "\\config\\boards\\shields",
+    "\\config\\boards\\shields\\two-milk"
+  ],
+  "SelectedNode": "\\config\\boards\\shields\\two-milk\\two_milk.overlay",
+  "PreviewInSolutionExplorer": false
+}
